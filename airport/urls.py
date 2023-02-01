@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from flights.views import ListAPIView 
+from flights import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("flights_list/",ListAPIView.as_view() , name="flights-list"),
-    path("bookings_list/",ListAPIView.as_view(), name="bookings-list "),
+    path("api/flights/",views.ListView.as_view(), name="flights-list"), # we put the 'api/' at the beginning to spicife that this is serializer
+    path("api/bookings/upcoming",views.BookingsListView.as_view(), name="upcoming-bookings"),
 ]
